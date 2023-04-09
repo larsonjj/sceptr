@@ -6,21 +6,20 @@ use crate::game::enemy::components::Enemy;
 use crate::game::events::GameOverEvent;
 use crate::game::resources::Score;
 use crate::loading::resources::*;
+use crate::REFERENCE_RESOLUTION_HEIGHT;
+use crate::REFERENCE_RESOLUTION_WIDTH;
 use bevy::prelude::*;
-use bevy::window::PrimaryWindow;
 use bevy_rapier2d::prelude::*;
 
-pub fn spawn_player(
-    mut commands: Commands,
-    textures: Res<TextureAssets>,
-    window_query: Query<&Window, With<PrimaryWindow>>,
-) {
-    let window = window_query.get_single().unwrap();
-
+pub fn spawn_player(mut commands: Commands, textures: Res<TextureAssets>) {
     commands
         .spawn(SpriteBundle {
             texture: textures.player_proto.clone(),
-            transform: Transform::from_xyz(window.width() / 2.0, window.height() / 2.0, 0.0),
+            transform: Transform::from_xyz(
+                REFERENCE_RESOLUTION_WIDTH / 2.0,
+                REFERENCE_RESOLUTION_HEIGHT / 2.0,
+                0.0,
+            ),
             ..default()
         })
         .insert(Player)

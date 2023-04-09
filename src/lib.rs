@@ -17,6 +17,11 @@ use crate::main_menu::MainMenuPlugin;
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
 use bevy::prelude::*;
 
+pub const REFERENCE_RESOLUTION_WIDTH: f32 = 320.;
+pub const REFERENCE_RESOLUTION_HEIGHT: f32 = 192.;
+pub const WINDOW_RESOLUTION_WIDTH: f32 = 960.;
+pub const WINDOW_RESOLUTION_HEIGHT: f32 = 576.;
+
 pub struct LibPlugin;
 
 impl Plugin for LibPlugin {

@@ -1,11 +1,18 @@
 use bevy::prelude::*;
-use bevy::window::PrimaryWindow;
+use bevy_pixel_camera::PixelCameraBundle;
 
-pub fn setup_camera(mut commands: Commands, window_query: Query<&Window, With<PrimaryWindow>>) {
-    let window = window_query.get_single().unwrap();
+use crate::{REFERENCE_RESOLUTION_HEIGHT, REFERENCE_RESOLUTION_WIDTH};
 
-    commands.spawn(Camera2dBundle {
-        transform: Transform::from_xyz(window.width() / 2.0, window.height() / 2.0, 1000.0),
-        ..default()
-    });
+pub fn setup_camera(mut commands: Commands) {
+    let mut camera = PixelCameraBundle::from_resolution(
+        REFERENCE_RESOLUTION_WIDTH as i32,
+        REFERENCE_RESOLUTION_HEIGHT as i32,
+    );
+    camera.transform = Transform::from_xyz(
+        REFERENCE_RESOLUTION_WIDTH / 2.0,
+        REFERENCE_RESOLUTION_HEIGHT / 2.0,
+        1000.0,
+    );
+
+    commands.spawn(camera);
 }

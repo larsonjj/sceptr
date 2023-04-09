@@ -10,8 +10,8 @@ use systems::*;
 
 use super::states::SimulationState;
 
-const PLAYER_SPEED: f32 = 300.;
-const PLAYER_SIZE: f32 = 64.;
+const PLAYER_SPEED: f32 = 50.;
+const PLAYER_SIZE: f32 = 16.;
 
 pub struct PlayerPlugin;
 

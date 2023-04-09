@@ -1,14 +1,14 @@
+use crate::{REFERENCE_RESOLUTION_HEIGHT, REFERENCE_RESOLUTION_WIDTH};
+
 use super::components::*;
-use bevy::{prelude::*, window::PrimaryWindow};
+use bevy::prelude::*;
 use bevy_rapier2d::prelude::*;
 
 // This system is responsible for setting up the play area pyhsics bounds
-pub fn spawn_walls(mut commands: Commands, window_query: Query<&Window, With<PrimaryWindow>>) {
-    let window = window_query.get_single().unwrap();
-
+pub fn spawn_walls(mut commands: Commands) {
     // Create the play area bounds
-    let play_area_width = window.width();
-    let play_area_height = window.height();
+    let play_area_width = REFERENCE_RESOLUTION_WIDTH;
+    let play_area_height = REFERENCE_RESOLUTION_HEIGHT;
 
     commands
         .spawn(SpatialBundle::default())

@@ -3,21 +3,16 @@ use super::events::*;
 use super::{ENEMY_SIZE, ENEMY_SPEED, NUMBER_OF_ENEMIES};
 use crate::game::walls::components::Walls;
 use crate::loading::resources::*;
+use crate::REFERENCE_RESOLUTION_HEIGHT;
+use crate::REFERENCE_RESOLUTION_WIDTH;
 use bevy::prelude::*;
-use bevy::window::PrimaryWindow;
 use bevy_rapier2d::prelude::*;
 use rand::prelude::*;
 
-pub fn spawn_enemies(
-    mut commands: Commands,
-    textures: Res<TextureAssets>,
-    window_query: Query<&Window, With<PrimaryWindow>>,
-) {
-    let window = window_query.get_single().unwrap();
-
+pub fn spawn_enemies(mut commands: Commands, textures: Res<TextureAssets>) {
     for _ in 0..NUMBER_OF_ENEMIES {
-        let random_x = random::<f32>() * (window.width() - ENEMY_SIZE);
-        let random_y = random::<f32>() * (window.height() - ENEMY_SIZE);
+        let random_x = random::<f32>() * (REFERENCE_RESOLUTION_WIDTH - ENEMY_SIZE);
+        let random_y = random::<f32>() * (REFERENCE_RESOLUTION_HEIGHT - ENEMY_SIZE);
         let velocity = Vec2::new(random::<f32>(), random::<f32>()).normalize() * ENEMY_SPEED;
         commands
             .spawn(SpriteBundle {

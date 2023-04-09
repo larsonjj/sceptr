@@ -10,8 +10,8 @@ use systems::*;
 
 use super::states::SimulationState;
 
-const ENEMY_SPEED: f32 = 150.;
-const ENEMY_SIZE: f32 = 64.;
+const ENEMY_SPEED: f32 = 50.;
+const ENEMY_SIZE: f32 = 16.;
 const NUMBER_OF_ENEMIES: usize = 1;
 
 pub struct EnemyPlugin;
