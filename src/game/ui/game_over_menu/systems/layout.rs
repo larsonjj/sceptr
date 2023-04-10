@@ -118,30 +118,33 @@ pub fn build_game_over_menu(
                                 ..default()
                             });
                         });
-                    // Quit Button
-                    parent
-                        .spawn((
-                            ButtonBundle {
-                                style: BUTTON_STYLE,
-                                background_color: NORMAL_BUTTON.into(),
-                                ..default()
-                            },
-                            QuitButton {},
-                        ))
-                        .with_children(|parent| {
-                            parent.spawn(TextBundle {
-                                style: Style { ..default() },
-                                text: Text {
-                                    sections: vec![TextSection::new(
-                                        "Quit",
-                                        get_button_text_style(&font_assets),
-                                    )],
-                                    alignment: TextAlignment::Center,
+                    #[cfg(not(target_family = "wasm"))]
+                    {
+                        // Quit Button
+                        parent
+                            .spawn((
+                                ButtonBundle {
+                                    style: BUTTON_STYLE,
+                                    background_color: NORMAL_BUTTON.into(),
                                     ..default()
                                 },
-                                ..default()
+                                QuitButton {},
+                            ))
+                            .with_children(|parent| {
+                                parent.spawn(TextBundle {
+                                    style: Style { ..default() },
+                                    text: Text {
+                                        sections: vec![TextSection::new(
+                                            "Quit",
+                                            get_button_text_style(&font_assets),
+                                        )],
+                                        alignment: TextAlignment::Center,
+                                        ..default()
+                                    },
+                                    ..default()
+                                });
                             });
-                        });
+                    }
                 });
         })
         .id();
