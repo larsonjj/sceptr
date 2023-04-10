@@ -32,9 +32,9 @@ pub fn build_main_menu(
             NodeBundle {
                 style: Style {
                     margin: camera_canvas.margin,
+                    size: Size::new(Val::Px(camera_canvas.width), Val::DEFAULT),
                     ..MAIN_MENU_STYLE
                 },
-                background_color: BackgroundColor(Color::RED),
                 ..default()
             },
             MainMenu {},

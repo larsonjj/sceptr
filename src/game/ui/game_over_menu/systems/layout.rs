@@ -27,10 +27,10 @@ pub fn build_game_over_menu(
             NodeBundle {
                 style: Style {
                     margin: camera_canvas.margin,
+                    size: Size::new(Val::Px(camera_canvas.width), Val::Px(camera_canvas.height)),
                     ..GAME_OVER_MENU_STYLE
                 },
                 z_index: ZIndex::Local(2), // See Ref. 1
-                background_color: BackgroundColor(Color::RED),
                 ..default()
             },
             GameOverMenu {},

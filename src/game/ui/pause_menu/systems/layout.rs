@@ -45,7 +45,6 @@ pub fn build_pause_menu(
                     ..PAUSE_MENU_STYLE
                 },
                 z_index: ZIndex::Local(1), // See Ref. 1
-                background_color: BackgroundColor(Color::RED),
                 ..default()
             },
             PauseMenu {},
