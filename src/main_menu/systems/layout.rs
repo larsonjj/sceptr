@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 
+use crate::camera::resources::CameraCanvas;
 use crate::loading::resources::FontAssets;
 use crate::loading::resources::TextureAssets;
 use crate::main_menu::components::*;
@@ -9,8 +10,9 @@ pub fn spawn_main_menu(
     mut commands: Commands,
     font_assets: Res<FontAssets>,
     textures: Res<TextureAssets>,
+    camera_canvas: Res<CameraCanvas>,
 ) {
-    build_main_menu(&mut commands, &textures, &font_assets);
+    build_main_menu(&mut commands, &textures, &font_assets, &camera_canvas);
 }
 
 pub fn despawn_main_menu(mut commands: Commands, main_menu_query: Query<Entity, With<MainMenu>>) {
@@ -23,11 +25,16 @@ pub fn build_main_menu(
     commands: &mut Commands,
     textures: &Res<TextureAssets>,
     font_assets: &Res<FontAssets>,
+    camera_canvas: &Res<CameraCanvas>,
 ) -> Entity {
     let main_menu_entity = commands
         .spawn((
             NodeBundle {
-                style: MAIN_MENU_STYLE,
+                style: Style {
+                    margin: camera_canvas.margin,
+                    ..MAIN_MENU_STYLE
+                },
+                background_color: BackgroundColor(Color::RED),
                 ..default()
             },
             MainMenu {},
@@ -106,4 +113,16 @@ pub fn build_main_menu(
         .id();
 
     main_menu_entity
+}
+
+pub fn update_main_menu_margins(
+    mut node_style_query: Query<&mut Style, With<MainMenu>>,
+    camera_canvas: Res<CameraCanvas>,
+) {
+    if camera_canvas.is_changed() {
+        for mut node_style in node_style_query.iter_mut() {
+            node_style.margin = camera_canvas.margin;
+            node_style.size.width = Val::Px(camera_canvas.width);
+        }
+    }
 }

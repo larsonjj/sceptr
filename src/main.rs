@@ -14,7 +14,7 @@ fn main() {
         // Bevy
         .add_state::<AppState>()
         .insert_resource(Msaa::Off)
-        .insert_resource(ClearColor(Color::rgb(0.4, 0.4, 0.4)))
+        .insert_resource(ClearColor(Color::rgb(0.000001, 0.000001, 0.000001)))
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {

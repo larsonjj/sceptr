@@ -26,9 +26,7 @@ pub struct LibPlugin;
 
 impl Plugin for LibPlugin {
     fn build(&self, app: &mut App) {
-        app
-            // My Plugins
-            .add_plugin(LoadingPlugin)
+        app.add_plugin(LoadingPlugin)
             .add_plugin(ActionsPlugin)
             .add_plugin(CameraPlugin)
             .add_plugin(MainMenuPlugin)

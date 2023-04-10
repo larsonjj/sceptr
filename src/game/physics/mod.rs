@@ -42,12 +42,12 @@ impl Plugin for GamePhysicsPlugin {
 
         #[cfg(debug_assertions)]
         {
-            app.add_plugin(RapierDebugRenderPlugin {
-                always_on_top: true,
-                enabled: true,
-                ..default()
-            })
-            .add_system(display_collision_events.in_set(OnUpdate(AppState::Game)));
+            // app.add_plugin(RapierDebugRenderPlugin {
+            //     always_on_top: true,
+            //     enabled: true,
+            //     ..default()
+            // })
+            // .add_system(display_collision_events.in_set(OnUpdate(AppState::Game)));
         }
     }
 }

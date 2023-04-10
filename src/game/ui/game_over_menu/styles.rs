@@ -9,11 +9,10 @@ pub const HOVERED_BUTTON: Color = Color::rgb(0.25, 0.25, 0.25);
 pub const PRESSED_BUTTON: Color = Color::rgb(0.35, 0.75, 0.35);
 
 pub const GAME_OVER_MENU_STYLE: Style = Style {
-    position_type: PositionType::Absolute, // Needed to display separately from HUD.
-    display: Display::Flex,                // Hidden by Default
+    display: Display::Flex, // Hidden by Default
     justify_content: JustifyContent::Center,
     align_items: AlignItems::Center,
-    size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
+    flex_grow: 1.0,
     ..Style::DEFAULT
 };
 

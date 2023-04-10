@@ -30,3 +30,22 @@ pub fn handle_app_exit_event(actions: Res<Actions>, mut app_exit_events: EventWr
         app_exit_events.send(AppExit);
     }
 }
+
+// pub fn build_root_ui(commands: &mut Commands, camera_canvas: &Res<CameraCanvas>) -> Entity {
+//     let root_ui_entity = commands
+//         .spawn((
+//             NodeBundle {
+//                 style: Style {
+//                     margin: camera_canvas.margin,
+//                     flex_direction: FlexDirection::Row,
+//                     flex_grow: 1.0,
+//                     ..Style::DEFAULT
+//                 },
+//                 background_color: BackgroundColor(Color::RED),
+//                 ..default()
+//             },
+//             RootUI {},
+//         ))
+//         .id();
+//     root_ui_entity
+// }

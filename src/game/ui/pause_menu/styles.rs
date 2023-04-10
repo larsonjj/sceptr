@@ -13,7 +13,7 @@ pub const PAUSE_MENU_STYLE: Style = Style {
     display: Display::Flex,                // Hidden by Default
     justify_content: JustifyContent::Center,
     align_items: AlignItems::Center,
-    size: Size::new(Val::Percent(100.0), Val::Percent(100.0)),
+    flex_grow: 1.0,
     ..Style::DEFAULT
 };
 

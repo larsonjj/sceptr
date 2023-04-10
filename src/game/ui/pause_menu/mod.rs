@@ -22,6 +22,7 @@ impl Plugin for PauseMenuPlugin {
                     interact_with_resume_button,
                     interact_with_main_menu_button,
                     interact_with_quit_button,
+                    update_pause_menu_margins,
                 )
                     .in_set(OnUpdate(SimulationState::Paused)),
             )

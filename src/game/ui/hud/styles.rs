@@ -9,7 +9,6 @@ pub const HUD_STYLE: Style = Style {
     flex_direction: FlexDirection::Row,
     justify_content: JustifyContent::SpaceBetween,
     align_items: AlignItems::Center,
-    size: Size::new(Val::Percent(100.0), Val::Percent(15.0)),
     ..Style::DEFAULT
 };
 

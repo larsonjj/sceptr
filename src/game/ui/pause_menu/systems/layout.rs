@@ -4,15 +4,20 @@
 
 use bevy::prelude::*;
 
+use crate::camera::resources::CameraCanvas;
 use crate::game::ui::pause_menu::components::{
     MainMenuButton, PauseMenu, QuitButton, ResumeButton,
 };
 use crate::game::ui::pause_menu::styles::*;
 use crate::loading::resources::FontAssets;
 
-pub fn spawn_pause_menu(mut commands: Commands, font_assets: Res<FontAssets>) {
+pub fn spawn_pause_menu(
+    mut commands: Commands,
+    font_assets: Res<FontAssets>,
+    camera_canvas: Res<CameraCanvas>,
+) {
     println!("Spawning Pause Menu");
-    build_pause_menu(&mut commands, &font_assets);
+    build_pause_menu(&mut commands, &font_assets, &camera_canvas);
 }
 
 pub fn despawn_pause_menu(
@@ -26,12 +31,21 @@ pub fn despawn_pause_menu(
 }
 
 // System Piping Example
-pub fn build_pause_menu(commands: &mut Commands, font_assets: &Res<FontAssets>) -> Entity {
+pub fn build_pause_menu(
+    commands: &mut Commands,
+    font_assets: &Res<FontAssets>,
+    camera_canvas: &Res<CameraCanvas>,
+) -> Entity {
     let pause_menu_entity = commands
         .spawn((
             NodeBundle {
-                style: PAUSE_MENU_STYLE,
+                style: Style {
+                    margin: camera_canvas.margin,
+                    size: Size::new(Val::Px(camera_canvas.width), Val::Px(camera_canvas.height)),
+                    ..PAUSE_MENU_STYLE
+                },
                 z_index: ZIndex::Local(1), // See Ref. 1
+                background_color: BackgroundColor(Color::RED),
                 ..default()
             },
             PauseMenu {},
@@ -136,4 +150,16 @@ pub fn build_pause_menu(commands: &mut Commands, font_assets: &Res<FontAssets>) 
         .id();
 
     pause_menu_entity
+}
+
+pub fn update_pause_menu_margins(
+    mut node_style_query: Query<&mut Style, With<PauseMenu>>,
+    camera_canvas: Res<CameraCanvas>,
+) {
+    if camera_canvas.is_changed() {
+        for mut node_style in node_style_query.iter_mut() {
+            node_style.margin = camera_canvas.margin;
+            node_style.size.width = Val::Px(camera_canvas.width);
+        }
+    }
 }

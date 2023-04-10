@@ -19,7 +19,11 @@ impl Plugin for MainMenuPlugin {
             .add_system(spawn_main_menu.in_schedule(OnEnter(AppState::MainMenu)))
             // Systems
             .add_systems(
-                (interact_with_play_button, interact_with_quit_button)
+                (
+                    interact_with_play_button,
+                    interact_with_quit_button,
+                    update_main_menu_margins,
+                )
                     .in_set(OnUpdate(AppState::MainMenu)),
             )
             // OnExit State Systems
