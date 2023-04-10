@@ -29,6 +29,7 @@ pub fn build_hud(
                     size: Size::new(Val::Px(camera_canvas.width), Val::Percent(15.0)),
                     ..HUD_STYLE
                 },
+                background_color: Color::RED.into(),
                 ..default()
             },
             HUD {},

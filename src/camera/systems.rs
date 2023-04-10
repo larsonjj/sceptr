@@ -43,25 +43,24 @@ pub fn resize_camera_canvas(
             let camera_origin_x = window_width / 2.0;
             let camera_origin_y = window_height / 2.0;
 
+            let zoom_offset = (zoom * (desired_height / desired_width)).floor();
+
             // populate new camera canvas margin
             camera_canvas.margin = UiRect {
-                left: Val::Px((camera_origin_x - canvas_origin_x - (zoom / 2.0)).floor()),
-                top: Val::Px((camera_origin_y - canvas_origin_y).floor()),
+                left: Val::Px(camera_origin_x - canvas_origin_x - zoom_offset),
+                top: Val::Px(camera_origin_y - canvas_origin_y),
                 right: Val::Px(
-                    (camera_origin_x - canvas_origin_x + desired_width_zoomed - window_width
-                        + (zoom / 2.0))
-                        .abs()
-                        .floor(),
+                    (camera_origin_x - canvas_origin_x + desired_width_zoomed - window_width).abs()
+                        + zoom_offset,
                 ),
                 bottom: Val::Px(
                     (camera_origin_y - canvas_origin_y + desired_height_zoomed - window_height)
-                        .abs()
-                        .floor(),
+                        .abs(),
                 ),
             };
             camera_canvas.scale = zoom;
             camera_canvas.width = desired_width_zoomed;
-            camera_canvas.height = desired_height_zoomed + (zoom / 4.0).floor();
+            camera_canvas.height = (desired_height_zoomed);
 
             println!(
                 "Camera Canvas: {:?} | Scale: {} | Width {} | Height {}",
