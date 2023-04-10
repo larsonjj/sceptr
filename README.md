@@ -1,6 +1,6 @@
 # Sceptr Game
 
-Game made for the Bevy Game Jam #3
+Project used to learn the [Bevy Game Engine](https://github.com/bevyengine/bevy)
 
 ## License
 
