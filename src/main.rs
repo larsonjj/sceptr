@@ -19,7 +19,7 @@ fn main() {
             DefaultPlugins
                 .set(WindowPlugin {
                     primary_window: Some(Window {
-                        title: "Learn Bevy Tutorial".to_string(),
+                        title: "Sceptr".to_string(),
                         resolution: (WINDOW_RESOLUTION_WIDTH, WINDOW_RESOLUTION_HEIGHT).into(),
                         canvas: Some("#bevy".to_owned()),
                         ..default()

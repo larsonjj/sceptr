@@ -159,6 +159,7 @@ pub fn update_pause_menu_margins(
         for mut node_style in node_style_query.iter_mut() {
             node_style.margin = camera_canvas.margin;
             node_style.size.width = Val::Px(camera_canvas.width);
+            node_style.size.height = Val::Px(camera_canvas.height);
         }
     }
 }
